@@ -1,0 +1,303 @@
+﻿<html>
+<head>
+<title>Portal防御计算</title>
+<meta http-equiv="content-type" content="utf-8" />
+<meta name="keywords" content="Ingress,工具,计算" />
+<meta name="description" content="Ingress Portal防御计算工具" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style type="text/css">
+body {
+	background-color: #000000;
+	color: #FFFAEF;
+}
+h1 {
+	color: #D5D4D4;
+}
+a:link    {color:#0CF;}
+a:visited {color:#0FF;}
+a:hover   {color:#FF3;}
+a:active  {color:#0FF;}
+hr {
+	margin-top: 0.2em;
+	margin-bottom: 0.2em;
+}
+table {
+	border: #00F3FF thin solid;
+}
+td {
+	border: #4D94AA thin solid;
+	padding: 0px;
+}
+tr {
+	border: #4D94AA thin solid;
+	padding: 0px;
+}
+textarea {
+	background-color: #000000;
+	color: #00CCFF;
+	scrollbar-arrow-color:yellow;
+	scrollbar-base-color:lightsalmon;
+}
+small {
+	color: #2CE149;
+}
+.s1{
+	color: #8CFBBD;
+}
+
+</style>
+<script type="text/javascript">
+<!--
+function clr() {
+	document.getElementById("result").innerHTML = "";
+}
+
+function res(para) {
+	document.getElementById("result").innerHTML += para;
+}
+
+function getShieldMitigation(shieldType) {
+	/** Shield为Portal提供的Mitigation */
+	const listShieldMitigation = [0,30,40,60,70];
+	return listShieldMitigation[shieldType];
+}
+
+function getResonatorHealth(resonatorType) {
+	/** Resonator为Portal提供的XM数值 */
+	const listResonatorXM = [0,1000,1500,2000,2500,3000,4000,5000,6000];
+	return listResonatorXM[resonatorType];
+}
+
+function calc() {
+	var dTotal = 0;	//总Mitigation
+	clr();
+	
+	res("-=== Mitigation ===-\n");
+	res("[盾]");
+	
+	var tShield = [0, 0, 0, 0];	//盾的种类
+	var dShield = [0, 0, 0, 0];	//盾的Mitigation
+	
+	for (var _=0; _<4; ++_) {
+		tShield[_] = document.getElementById("s"+(_+1)).selectedIndex;
+		dShield[_] = getShieldMitigation(tShield[_]);
+		res(" " + dShield[_]);
+		dTotal += dShield[_];
+	}
+	res("\n => 共计: "+dTotal);
+	
+	res("\n[Link] ")
+	var nLink = document.getElementById("n_link").value;
+	var dLink = Math.round(400/9*Math.atan(nLink/Math.E));
+	dTotal += dLink;
+	res(dLink);
+	res("\n => 共计: "+dTotal);
+	
+	if (dTotal > 95) {
+		res("\nMitigation超限，已控制为95。");
+		dTotal = 95
+	} else {
+		res("\nMitigation未超限，为"+dTotal);
+	}
+	
+	res("\n-=== Resonator ===-\n");
+	var tResonator = [0,0,0,0,0,0,0,0];
+	var hResonator = [0,0,0,0,0,0,0,0];
+	var hTotal = 0;
+	for (var _=0; _<8; ++_) {
+		tResonator[_] = document.getElementById("r"+(_+1)).selectedIndex;
+		hResonator[_] = getResonatorHealth(tResonator[_]);
+		res (" #"+ (_+1) + ": " + hResonator[_] + " (" + Math.ceil(hResonator[_]*100/(100-dTotal))+ ")\n")
+		hTotal += hResonator[_];
+	}
+	res("共计: "+hTotal+ " ("+ Math.ceil(hTotal*100/(100-dTotal)) +") XM\n------------\n");
+	res("说明：括号内为考虑了Mitigation的XM数值。");
+} 
+-->
+</script>
+</head>
+<body>
+<h1>Portal 防御计算</h1><a href="index.html">&lt;&lt;&lt;返回目录</a>
+<hr />
+<table>
+  <noscript>
+  <tr>
+    <td colspan="4" style="text-align:center"> 关了JavaScript还算个卵啊 </td>
+  </tr>
+  </noscript>
+  
+  <tr>
+    <td colspan="4">Resonator:</td>
+  </tr>
+  
+  <tr>
+    <td>
+     <select id="r1">
+      <option>(无)</option>
+      <option selected="selected">L1</option>
+      <option>L2</option>
+      <option>L3</option>
+      <option>L4</option>
+      <option>L5</option>
+      <option>L6</option>
+      <option>L7</option>
+      <option>L8</option>
+     </select>
+    </td>
+    <td>
+     <select id="r2">
+      <option>(无)</option>
+      <option selected="selected">L1</option>
+      <option>L2</option>
+      <option>L3</option>
+      <option>L4</option>
+      <option>L5</option>
+      <option>L6</option>
+      <option>L7</option>
+      <option>L8</option>
+     </select>
+    </td>
+    <td>
+     <select id="r3">
+      <option>(无)</option>
+      <option selected="selected">L1</option>
+      <option>L2</option>
+      <option>L3</option>
+      <option>L4</option>
+      <option>L5</option>
+      <option>L6</option>
+      <option>L7</option>
+      <option>L8</option>
+     </select>
+    </td>
+    <td>
+     <select id="r4">
+      <option>(无)</option>
+      <option selected="selected">L1</option>
+      <option>L2</option>
+      <option>L3</option>
+      <option>L4</option>
+      <option>L5</option>
+      <option>L6</option>
+      <option>L7</option>
+      <option>L8</option>
+     </select>
+    </td>
+  </tr>
+  
+    <tr>
+    <td>
+     <select id="r5">
+      <option>(无)</option>
+      <option selected="selected">L1</option>
+      <option>L2</option>
+      <option>L3</option>
+      <option>L4</option>
+      <option>L5</option>
+      <option>L6</option>
+      <option>L7</option>
+      <option>L8</option>
+     </select>
+    </td>
+    <td>
+     <select id="r6">
+      <option>(无)</option>
+      <option selected="selected">L1</option>
+      <option>L2</option>
+      <option>L3</option>
+      <option>L4</option>
+      <option>L5</option>
+      <option>L6</option>
+      <option>L7</option>
+      <option>L8</option>
+     </select>
+    </td>
+    <td>
+     <select id="r7">
+      <option>(无)</option>
+      <option selected="selected">L1</option>
+      <option>L2</option>
+      <option>L3</option>
+      <option>L4</option>
+      <option>L5</option>
+      <option>L6</option>
+      <option>L7</option>
+      <option>L8</option>
+     </select>
+    </td>
+    <td>
+     <select id="r8">
+      <option>(无)</option>
+      <option selected="selected">L1</option>
+      <option>L2</option>
+      <option>L3</option>
+      <option>L4</option>
+      <option>L5</option>
+      <option>L6</option>
+      <option>L7</option>
+      <option>L8</option>
+     </select>
+    </td>
+  </tr>
+
+  <tr>
+   <td colspan="4">Shield:</td>
+  </tr>
+  
+  <tr>
+   <td>
+    <select id="s1">
+     <option>(无)</option>
+     <option>绿</option>
+     <option>紫</option>
+     <option selected="selected">粉</option>
+     <option>AXA</option>
+    </select>
+   </td>
+   <td>
+    <select id="s2">
+     <option>(无)</option>
+     <option>绿</option>
+     <option>紫</option>
+     <option selected="selected">粉</option>
+     <option>AXA</option>
+    </select>
+   </td>
+   <td>
+    <select id="s3">
+     <option selected="selected">(无)</option>
+     <option>绿</option>
+     <option>紫</option>
+     <option>粉</option>
+     <option>AXA</option>
+    </select>
+   </td>
+   <td>
+    <select id="s4">
+     <option selected="selected">(无)</option>
+     <option>绿</option>
+     <option>紫</option>
+     <option>粉</option>
+     <option>AXA</option>
+    </select>
+   </td>
+  </tr>
+  
+  <tr>
+   <td colspan=”1“>Link:</td>
+   <td colspan="3"><input type="tel" maxlength="4" value="4" id="n_link" style="width:30%" />条</td>
+  </tr>
+  
+  <tr>
+    <td colspan="4" style="text-align:center"><input type="button" onClick="calc();" value="点我开始计算"/></td>
+  </tr>
+  <tr>
+    <td colspan="4"><textarea id="result" style="width:100%; height:25em;" readonly="readonly">输入信息以开始计算!
+Brought to you by: DuckSoft</textarea></td>
+  </tr>
+</table>
+<hr />
+<small>Copyleft DuckSoft under GPL 3.0 License.<br />
+Free to use, but ABSOLUTELY NO WARRANTY!</small>
+</body>
+</html>
