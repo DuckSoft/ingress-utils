@@ -46,8 +46,39 @@ small {
 }
 
 </style>
+<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
 <script type="text/javascript">
-<!--
+$(function () {
+    var tr = $("<tr></tr>");
+    const ii = [5, 6, 7, 8, 1, 2, 3, 4];
+    for (var i = 0; i < 8; ++i) {
+        var td = $("<td></td>");
+        var sel = $("<select></select>").attr("id", "r" + ii[i]);
+
+        for (var j = 0; j <= 8; ++j) {
+            var opt = $("<option></option>");
+            switch (j) {
+                case 0:
+                    opt.text("(无)");
+                    break;
+                case 1:
+                    opt.attr("selected", "selected");
+                default:
+                    opt.text("L" + j);
+                    break;
+            }
+            opt.appendTo(sel);
+        }
+            sel.appendTo(td);
+            td.appendTo(tr);
+            if (ii[i] == 8 || ii[i] == 4) {
+                tr.insertAfter($("#res-title"));
+                tr = $("<tr></tr>");
+            }
+        }
+    //TODO: shield autogeneration
+    });
 function clr() {
 	document.getElementById("result").innerHTML = "";
 }
@@ -112,8 +143,7 @@ function calc() {
 	}
 	res("共计: "+hTotal+ " ("+ Math.ceil(hTotal*100/(100-dTotal)) +") XM\n------------\n");
 	res("说明：括号内为考虑了Mitigation的XM数值。");
-} 
--->
+}
 </script>
 </head>
 <body>
@@ -126,121 +156,11 @@ function calc() {
   </tr>
   </noscript>
   
-  <tr>
+  <tr id="res-title">
     <td colspan="4">Resonator:</td>
   </tr>
-  
-  <tr>
-    <td>
-     <select id="r1">
-      <option>(无)</option>
-      <option selected="selected">L1</option>
-      <option>L2</option>
-      <option>L3</option>
-      <option>L4</option>
-      <option>L5</option>
-      <option>L6</option>
-      <option>L7</option>
-      <option>L8</option>
-     </select>
-    </td>
-    <td>
-     <select id="r2">
-      <option>(无)</option>
-      <option selected="selected">L1</option>
-      <option>L2</option>
-      <option>L3</option>
-      <option>L4</option>
-      <option>L5</option>
-      <option>L6</option>
-      <option>L7</option>
-      <option>L8</option>
-     </select>
-    </td>
-    <td>
-     <select id="r3">
-      <option>(无)</option>
-      <option selected="selected">L1</option>
-      <option>L2</option>
-      <option>L3</option>
-      <option>L4</option>
-      <option>L5</option>
-      <option>L6</option>
-      <option>L7</option>
-      <option>L8</option>
-     </select>
-    </td>
-    <td>
-     <select id="r4">
-      <option>(无)</option>
-      <option selected="selected">L1</option>
-      <option>L2</option>
-      <option>L3</option>
-      <option>L4</option>
-      <option>L5</option>
-      <option>L6</option>
-      <option>L7</option>
-      <option>L8</option>
-     </select>
-    </td>
-  </tr>
-  
-    <tr>
-    <td>
-     <select id="r5">
-      <option>(无)</option>
-      <option selected="selected">L1</option>
-      <option>L2</option>
-      <option>L3</option>
-      <option>L4</option>
-      <option>L5</option>
-      <option>L6</option>
-      <option>L7</option>
-      <option>L8</option>
-     </select>
-    </td>
-    <td>
-     <select id="r6">
-      <option>(无)</option>
-      <option selected="selected">L1</option>
-      <option>L2</option>
-      <option>L3</option>
-      <option>L4</option>
-      <option>L5</option>
-      <option>L6</option>
-      <option>L7</option>
-      <option>L8</option>
-     </select>
-    </td>
-    <td>
-     <select id="r7">
-      <option>(无)</option>
-      <option selected="selected">L1</option>
-      <option>L2</option>
-      <option>L3</option>
-      <option>L4</option>
-      <option>L5</option>
-      <option>L6</option>
-      <option>L7</option>
-      <option>L8</option>
-     </select>
-    </td>
-    <td>
-     <select id="r8">
-      <option>(无)</option>
-      <option selected="selected">L1</option>
-      <option>L2</option>
-      <option>L3</option>
-      <option>L4</option>
-      <option>L5</option>
-      <option>L6</option>
-      <option>L7</option>
-      <option>L8</option>
-     </select>
-    </td>
-  </tr>
 
-  <tr>
+  <tr id="shield-title">
    <td colspan="4">Shield:</td>
   </tr>
   
