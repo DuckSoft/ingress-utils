@@ -1,0 +1,38 @@
+body {
+    background-color: #000000;
+    color: #FFFAEF;
+}
+h1 {
+    color: #D5D4D4;
+}
+a:link    {color:#0CF;}
+a:visited {color:#0FF;}
+a:hover   {color:#FF3;}
+a:active  {color:#0FF;}
+hr {
+    margin-top: 0.2em;
+    margin-bottom: 0.2em;
+}
+table {
+    border: #00F3FF thin solid;
+}
+td {
+    border: #4D94AA thin solid;
+    padding: 0px;
+}
+tr {
+    border: #4D94AA thin solid;
+    padding: 0px;
+}
+textarea {
+    background-color: #000000;
+    color: #00CCFF;
+    scrollbar-arrow-color:yellow;
+    scrollbar-base-color:lightsalmon;
+}
+small {
+    color: #2CE149;
+}
+.s1{
+    color: #8CFBBD;
+}
